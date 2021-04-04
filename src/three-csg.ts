@@ -3,8 +3,8 @@
  * @license     {@link https://github.com/manthrax/THREE-CSGMesh/blob/master/LICENSE|MIT}
  */
 
-import { BufferGeometry, Vector3, Vector2, Matrix3, BufferAttribute, Matrix4, Mesh } from 'three'
-import { CSG, Vertex, Vector, Polygon } from './csg-lib.js'
+import { BufferGeometry, Vector3, Matrix3, BufferAttribute, Matrix4, Mesh } from 'three'
+import { CSG, Vertex, Polygon } from './csg-lib'
 
 let ttvv0 = new Vector3()
 let tmpm3 = new Matrix3()
@@ -31,7 +31,7 @@ let nbuf2 = ct => {
   }
 }
 
-export default class ThreeCSG extends CSG {
+export class ThreeCSG extends CSG {
   fromGeometry(geom, objectIndex) {
     let polys: any[] = []
     if (geom.isGeometry) {
