@@ -229,6 +229,12 @@ class Vertex {
 class Plane {
   constructor(public normal, public w) {}
 
+  // `Plane.EPSILON` is the tolerance used by `splitPolygon()` to decide if a
+  // point is on the plane.
+  static get EPSILON() {
+    return 1e-5
+  }
+
   clone() {
     return new Plane(this.normal.clone(), this.w)
   }
@@ -252,7 +258,7 @@ class Plane {
     // Classify each point as well as the entire polygon into one of the above
     // four classes.
     let polygonType = 0
-    let types = []
+    let types: any = []
     for (let i = 0; i < polygon.vertices.length; i++) {
       let t = this.normal.dot(polygon.vertices[i].pos) - this.w
       let type = t < -Plane.EPSILON ? BACK : t > Plane.EPSILON ? FRONT : COPLANAR
@@ -272,8 +278,8 @@ class Plane {
         back.push(polygon)
         break
       case SPANNING:
-        let f = [],
-          b = []
+        let f: any = []
+        let b: any = []
         for (let i = 0; i < polygon.vertices.length; i++) {
           let j = (i + 1) % polygon.vertices.length
           let ti = types[i],
@@ -293,12 +299,6 @@ class Plane {
         if (b.length >= 3) back.push(new Polygon(b, polygon.shared))
         break
     }
-  }
-
-  // `Plane.EPSILON` is the tolerance used by `splitPolygon()` to decide if a
-  // point is on the plane.
-  get EPSILON() {
-    return 1e-5
   }
 
   static fromPoints(a, b, c) {
@@ -344,7 +344,12 @@ class Polygon {
 // no distinction between internal and leaf nodes.
 
 class Node {
-  constructor(polygons) {
+  plane: any
+  front: any
+  back: any
+  polygons: any[]
+
+  constructor(polygons?: any) {
     this.plane = null
     this.front = null
     this.back = null
