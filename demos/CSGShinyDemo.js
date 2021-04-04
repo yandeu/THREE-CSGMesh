@@ -1,7 +1,7 @@
 import*as THREE from "../lib/three.module.js"
 import {OrbitControls} from "../lib/jsm/OrbitControls.js"
 import reindexBufferGeometry from "./BufferGeometryIndexer.js"
-import CSG from "../three-csg.js"
+import "../three-csg.min.js"
 
 let renderer = new THREE.WebGLRenderer({
     antialias: true
