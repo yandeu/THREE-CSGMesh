@@ -31,8 +31,9 @@ let nbuf2 = ct => {
   }
 }
 
-export class ThreeCSG extends CSG {
-  fromGeometry(geom, objectIndex) {
+ class ThreeCSG extends CSG {
+
+ static fromGeometry(geom, objectIndex) {
     let polys: any[] = []
     if (geom.isGeometry) {
       let fs = geom.faces
@@ -100,8 +101,8 @@ export class ThreeCSG extends CSG {
     return CSG.fromPolygons(polys)
   }
 
-  fromMesh(mesh, objectIndex) {
-    let csg = this.fromGeometry(mesh.geometry, objectIndex)
+ static fromMesh(mesh, objectIndex) {
+    let csg = ThreeCSG.fromGeometry(mesh.geometry, objectIndex)
     tmpm3.getNormalMatrix(mesh.matrix)
     for (let i = 0; i < csg.polygons.length; i++) {
       let p = csg.polygons[i]
@@ -114,7 +115,7 @@ export class ThreeCSG extends CSG {
     return csg
   }
 
-  toMesh(csg, toMatrix, toMaterial) {
+  static toMesh(csg, toMatrix, toMaterial) {
     let ps = csg.polygons
     let geom
     let g2
@@ -185,3 +186,6 @@ export class ThreeCSG extends CSG {
     return m
   }
 }
+
+
+export {ThreeCSG as CSG}

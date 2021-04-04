@@ -1,23 +1,43 @@
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
-
+  mode: 'production',
+  target: 'web',
   entry: './src/three-csg.ts',
 
   output: {
     filename: 'three-csg.min.js',
     path: path.resolve(__dirname),
-    library: 'ThreeCSG',
     libraryTarget: 'umd'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js']
   },
   module: {
-    rules: [{ test: /\.tsx?$/, loader: 'ts-loader' }]
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              configFile: 'tsconfig.json'
+            }
+          }
+        ]
+      }
+    ]
   },
   externals: {
-    three: 'THREE'
+    THREE: 'THREE'
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false
+      })
+    ]
   }
 }

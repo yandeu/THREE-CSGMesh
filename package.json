@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle": "webpack --config webpack.prod.cjs",
+    "bundle": "npm run build && webpack --config webpack.prod.cjs",
     "build": "tsc"
   },
   "repository": {
