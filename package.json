@@ -1,0 +1,28 @@
+{
+  "name": "three-csgmesh",
+  "version": "2.0.0",
+  "description": "Conversion of a CSG - (Constructive Solid Geometry) library for use with modern THREE.js",
+  "main": "csg-lib.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manthrax/THREE-CSGMesh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manthrax/THREE-CSGMesh/issues"
+  },
+  "homepage": "https://github.com/manthrax/THREE-CSGMesh#readme",
+  "peerDependencies": {
+    "three": "^0.125.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
